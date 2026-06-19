@@ -41,12 +41,16 @@
     content:''; position:absolute; right:-40px; top:-40px; width:220px; height:220px;
     background:rgba(255,255,255,0.08); border-radius:50%;
   }
-  .hero-badges{display:flex; gap:8px; margin-bottom:14px; position:relative; z-index:1;}
+  .hero-badges{display:flex; gap:8px; margin-bottom:14px; position:relative; z-index:1; flex-wrap:wrap;}
   .hero-badges span{font-size:12px; font-weight:700; padding:5px 13px; border-radius:18px;}
   .b-badge{background:rgba(255,255,255,0.18); color:#fff;}
   .area-badge{background:var(--accent); color:#fff;}
+  .status-badge{background:#fff; color:var(--main-dark);}
   .title-box h1{
-    font-size:27px; line-height:1.55; margin:0; font-weight:700; color:#fff; position:relative; z-index:1;
+    font-size:24px; line-height:1.4; margin:0 0 8px; font-weight:900; color:#fff; position:relative; z-index:1;
+  }
+  .catch-copy{
+    font-size:14px; line-height:1.7; margin:0; color:rgba(255,255,255,0.92); position:relative; z-index:1; max-width:640px;
   }
 
   /* ギャラリー（区切り線なし・マソンリー風） */
@@ -94,6 +98,12 @@
 
   .tag-row{display:flex; flex-wrap:wrap; gap:8px;}
   .tag{font-size:12px; background:var(--accent-light); color:#9C5A2D; padding:5px 13px; border-radius:14px; font-weight:500;}
+
+  .target-tag-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .target-tag{
+    font-size:13px; font-weight:700; background:var(--main-light); color:var(--main-dark);
+    padding:8px 18px; border-radius:10px; border:1px solid var(--main);
+  }
 
   .map-box{height:220px; background:var(--main-light); border-radius:14px; display:flex; align-items:center; justify-content:center; color:var(--main-dark); font-size:13px; margin-top:14px;}
 
@@ -170,7 +180,8 @@
     .side-card{position:static;}
 
     .title-box{padding:20px 18px;}
-    .title-box h1{font-size:18px; line-height:1.45;}
+    .title-box h1{font-size:17px; line-height:1.4; margin-bottom:6px;}
+    .catch-copy{font-size:12px; line-height:1.6;}
     .hero-badges{margin-bottom:8px;}
     .hero-badges span{font-size:10.5px; padding:4px 10px;}
 
@@ -220,8 +231,10 @@
     <div class="hero-badges">
       <span class="b-badge">就労継続支援B型</span>
       <span class="area-badge">大阪市天王寺区</span>
+      <span class="status-badge">🟢 受け入れ可能</span>
     </div>
-    <h1>【JR寺田町駅徒歩3分】お花に囲まれて働きませんか？<br>提携フラワーショップの運営を支える就労継続支援B型</h1>
+    <h1>ハートフェルト・フローラル・プロジェクト 寺田町</h1>
+    <p class="catch-copy">【JR寺田町駅徒歩3分】お花に囲まれて働きませんか？提携フラワーショップの運営を支える就労継続支援B型</p>
   </div>
 
   <div class="gallery">
@@ -233,6 +246,7 @@
       <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&q=80" alt="その他の写真">
       <span class="g-more">+5枚の写真を見る</span>
     </a>
+
   </div>
 </div>
 
@@ -250,6 +264,18 @@
         <div class="feature-item"><span class="emoji">🚉</span><span class="label">JR寺田町駅 徒歩3分</span></div>
         <div class="feature-item"><span class="emoji">🌸</span><span class="label">花・植物が好きな方歓迎</span></div>
         <div class="feature-item"><span class="emoji">🤝</span><span class="label">提携フラワーショップ運営支援</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">🧑‍🤝‍🧑</span>対象となる障害・症状</h2>
+      <p>下記に当てはまる方が多く利用されていますが、まずはお気軽にご相談ください。診断名がなくても見学・相談は可能です。</p>
+      <div class="target-tag-row">
+        <span class="target-tag">精神障害</span>
+        <span class="target-tag">発達障害</span>
+        <span class="target-tag">知的障害</span>
+        <span class="target-tag">身体障害</span>
+        <span class="target-tag">難病</span>
       </div>
     </div>
 
