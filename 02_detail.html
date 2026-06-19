@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ハートフェルト・フローラル・プロジェクト 寺田町 | 就労支援のまどぐち</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFDF9; --surface:#FFFFFF;
+    --main:#3D7A5C; --main-dark:#2B5C44; --main-light:#EAF3EE;
+    --accent:#E8956B; --accent-light:#FBE8DC;
+    --text:#2B2B28; --sub:#7A7670; --line:#E5E0D5;
+    --b-type:#3D7A5C; --b-type-bg:#EAF3EE;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Noto Sans JP', sans-serif; background:var(--bg); color:var(--text); line-height:1.8;}
+  h1,h2,h3,.brand{font-family:'Zen Maru Gothic', sans-serif;}
+
+  header.site{background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;}
+  .header-inner{max-width:1180px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px;}
+  .brand{display:flex; align-items:center; gap:10px; font-weight:900; font-size:20px; color:var(--main-dark); text-decoration:none; white-space:nowrap;}
+  .brand .mark{width:36px; height:36px; border-radius:10px; background:var(--main); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px;}
+  nav.main-nav{display:flex; gap:28px; font-size:14px; font-weight:500;}
+  nav.main-nav a{color:var(--text); text-decoration:none;}
+  .header-actions{display:flex; gap:10px;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; padding:9px 18px; border-radius:24px; font-size:13px; font-weight:700; text-decoration:none; cursor:pointer; border:1px solid transparent;}
+  .btn-ghost{border-color:var(--main); color:var(--main); background:#fff;}
+  .btn-primary{background:var(--accent); color:#fff;}
+
+  .breadcrumb{max-width:1180px; margin:0 auto; padding:14px 24px 0; font-size:12px; color:var(--sub);}
+  .breadcrumb a{color:var(--sub); text-decoration:none;}
+
+  /* Hero（タイトルボックス） */
+  .hero{max-width:1180px; margin:0 auto; padding:18px 24px 0;}
+  .title-box{
+    background:linear-gradient(135deg, var(--main-dark), var(--main));
+    border-radius:22px; padding:34px 38px; color:#fff; position:relative; overflow:hidden;
+  }
+  .title-box::after{
+    content:''; position:absolute; right:-40px; top:-40px; width:220px; height:220px;
+    background:rgba(255,255,255,0.08); border-radius:50%;
+  }
+  .hero-badges{display:flex; gap:8px; margin-bottom:14px; position:relative; z-index:1;}
+  .hero-badges span{font-size:12px; font-weight:700; padding:5px 13px; border-radius:18px;}
+  .b-badge{background:rgba(255,255,255,0.18); color:#fff;}
+  .area-badge{background:var(--accent); color:#fff;}
+  .title-box h1{
+    font-size:27px; line-height:1.55; margin:0; font-weight:700; color:#fff; position:relative; z-index:1;
+  }
+
+  /* ギャラリー（区切り線なし・マソンリー風） */
+  .gallery{
+    margin-top:16px; display:grid; grid-template-columns:1.4fr 1fr 1fr; grid-template-rows:1fr 1fr;
+    gap:6px; height:380px; border-radius:18px; overflow:hidden;
+  }
+  .gallery a{display:block; height:100%; width:100%; position:relative; overflow:hidden;}
+  .gallery img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s ease;}
+  .gallery a:hover img{transform:scale(1.05);}
+  .gallery .g-main{grid-row:1 / 3;}
+  .gallery .g-more{
+    position:absolute; inset:0; background:rgba(43,43,40,0.55); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;
+  }
+
+  /* Layout */
+  .layout{max-width:1180px; margin:0 auto; padding:28px 24px 64px; display:grid; grid-template-columns:1fr 340px; gap:36px;}
+
+  .section{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:28px; margin-bottom:24px;}
+  .section h2{
+    font-size:18px; margin:0 0 16px; padding-bottom:12px; border-bottom:2px solid var(--main-light);
+    display:flex; align-items:center; gap:8px;
+  }
+  .section h2 .icon{
+    width:28px; height:28px; border-radius:8px; background:var(--main-light); color:var(--main-dark);
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .section p{font-size:14.5px; color:#444038; margin:0 0 14px;}
+  .feature-list{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px;}
+  .feature-item{
+    background:var(--bg); border:1px solid var(--line); border-radius:14px; padding:16px; text-align:center;
+  }
+  .feature-item .emoji{font-size:24px; display:block; margin-bottom:8px;}
+  .feature-item .label{font-size:12.5px; font-weight:700; color:var(--main-dark);}
+
+  table.info-table{width:100%; border-collapse:collapse; font-size:13.5px;}
+  table.info-table th, table.info-table td{
+    text-align:left; padding:13px 14px; border-bottom:1px solid var(--line); vertical-align:top;
+  }
+  table.info-table th{
+    width:160px; color:var(--sub); font-weight:500; background:var(--bg); border-radius:8px 0 0 8px;
+  }
+  table.info-table tr:last-child th, table.info-table tr:last-child td{border-bottom:none;}
+
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{font-size:12px; background:var(--accent-light); color:#9C5A2D; padding:5px 13px; border-radius:14px; font-weight:500;}
+
+  .map-box{height:220px; background:var(--main-light); border-radius:14px; display:flex; align-items:center; justify-content:center; color:var(--main-dark); font-size:13px; margin-top:14px;}
+
+  /* 仕事内容カード（複数登録・写真付き） */
+  .job-card{
+    display:grid; grid-template-columns:200px 1fr; gap:20px;
+    border:1px solid var(--line); border-radius:16px; padding:18px; margin-bottom:16px; background:var(--bg);
+  }
+  .job-card:last-child{margin-bottom:0;}
+  .job-card .job-photo{border-radius:12px; overflow:hidden; height:140px;}
+  .job-card .job-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .job-card .job-body h3{font-size:15px; margin:0 0 8px; font-family:'Zen Maru Gothic';}
+  .job-card .job-body p{font-size:13.5px; color:#4a463e; margin:0;}
+  .job-num{
+    display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px;
+    border-radius:50%; background:var(--main); color:#fff; font-size:11px; font-weight:700; margin-right:8px;
+  }
+
+  /* サポート体制 */
+  .support-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .support-item{
+    display:flex; gap:14px; border:1px solid var(--line); border-radius:14px; padding:16px; background:var(--bg);
+  }
+  .support-item .s-icon{
+    width:38px; height:38px; border-radius:10px; background:var(--main-light); color:var(--main-dark);
+    display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0;
+  }
+  .support-item h4{font-size:13.5px; margin:0 0 4px;}
+  .support-item p{font-size:12.5px; color:var(--sub); margin:0;}
+
+  /* アクセス */
+  .access-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;}
+  .access-list{list-style:none; margin:0; padding:0; font-size:13.5px;}
+  .access-list li{display:flex; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line);}
+  .access-list li:last-child{border-bottom:none;}
+  .access-list .a-icon{color:var(--main); flex-shrink:0;}
+
+  /* フロート問い合わせCTA */
+  .float-cta{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    background:var(--accent); color:#fff; padding:15px 26px; border-radius:30px;
+    font-weight:700; font-size:14px; text-decoration:none; box-shadow:0 10px 24px rgba(232,149,107,0.4);
+    display:flex; align-items:center; gap:8px;
+  }
+  .float-cta:hover{transform:translateY(-2px);}
+
+  /* Sidebar */
+  .side-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:22px;
+    position:sticky; top:90px; margin-bottom:18px;
+  }
+  .side-card h3{font-size:15px; margin:0 0 14px;}
+  .side-info{font-size:13px; color:var(--text); margin-bottom:14px; line-height:1.9;}
+  .side-info b{display:block; color:var(--sub); font-size:11.5px; font-weight:500;}
+  .cta-btn{
+    display:block; text-align:center; width:100%; padding:14px; border-radius:14px;
+    background:var(--accent); color:#fff; font-weight:700; font-size:14.5px; text-decoration:none;
+    margin-bottom:10px;
+  }
+  .cta-btn.secondary{background:#fff; border:1.5px solid var(--main); color:var(--main);}
+  .side-note{font-size:11.5px; color:var(--sub); text-align:center; margin-top:8px;}
+
+  footer{background:var(--main-dark); color:#fff; padding:32px 24px; font-size:12px; text-align:center; margin-top:40px;}
+
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr;}
+    .side-card{position:static;}
+    .gallery{height:auto; grid-template-columns:1fr 1fr; grid-template-rows:140px 140px;}
+    .gallery .g-main{grid-column:1/3; grid-row:1; height:200px;}
+    .feature-list{grid-template-columns:1fr 1fr;}
+    .job-card{grid-template-columns:1fr;}
+    .job-card .job-photo{height:180px;}
+    .support-grid{grid-template-columns:1fr;}
+    .access-grid{grid-template-columns:1fr;}
+    nav.main-nav{display:none;}
+    .float-cta{right:14px; bottom:14px; padding:13px 20px; font-size:13px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-inner">
+    <a class="brand" href="#"><span class="mark">窓</span>就労支援のまどぐち</a>
+    <nav class="main-nav">
+      <a href="#">事業所を探す</a>
+      <a href="#">業務書式</a>
+      <a href="#">研修資料</a>
+      <a href="#">理解度テスト</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-ghost" href="#">事業所会員登録</a>
+      <a class="btn btn-primary" href="#">ログイン</a>
+    </div>
+  </div>
+</header>
+
+<div class="breadcrumb">
+  <a href="#">HOME</a> › <a href="#">就労継続支援B型</a> › <a href="01_list.html">大阪府の事業所一覧</a> › ハートフェルト・フローラル・プロジェクト 寺田町
+</div>
+
+<div class="hero">
+  <div class="title-box">
+    <div class="hero-badges">
+      <span class="b-badge">就労継続支援B型</span>
+      <span class="area-badge">大阪市天王寺区</span>
+    </div>
+    <h1>【JR寺田町駅徒歩3分】お花に囲まれて働きませんか？<br>提携フラワーショップの運営を支える就労継続支援B型</h1>
+  </div>
+
+  <div class="gallery">
+    <a class="g-main" href="#"><img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=700&q=80" alt="店内の様子"></a>
+    <a href="#"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&q=80" alt="作業の様子"></a>
+    <a href="#"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&q=80" alt="お花のディスプレイ"></a>
+    <a href="#"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&q=80" alt="作業風景2"></a>
+    <a href="#">
+      <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&q=80" alt="その他の写真">
+      <span class="g-more">+5枚の写真を見る</span>
+    </a>
+  </div>
+</div>
+
+<div class="layout">
+  <main>
+
+    <div class="section">
+      <h2><span class="icon">✦</span>事業所紹介文</h2>
+      <p>当事業所は、JR寺田町駅から徒歩3分の好立地にある就労継続支援B型事業所です。最大の特長は、提携しているお花屋さん「flower shop Style寺田町」の運営支援を中心としたお仕事ができること。お花が好きな方、ものづくりや手作業に興味がある方にぴったりの、彩り豊かな職場環境です。同じ悩み、同じ目標を持つ利用者様同士で話しながら作業を進めることで、意外な発見に出会えるかもしれません。</p>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">⭐</span>事業所の特徴</h2>
+      <div class="feature-list">
+        <div class="feature-item"><span class="emoji">🚉</span><span class="label">JR寺田町駅 徒歩3分</span></div>
+        <div class="feature-item"><span class="emoji">🌸</span><span class="label">花・植物が好きな方歓迎</span></div>
+        <div class="feature-item"><span class="emoji">🤝</span><span class="label">提携フラワーショップ運営支援</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">📋</span>お仕事内容</h2>
+      <p>提携フラワーショップ「flower shop Style寺田町」の店舗運営に関わる業務を中心に、複数の作業内容から自分に合った仕事を選べます。</p>
+
+      <div class="job-card">
+        <div class="job-photo"><img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=300&q=80" alt="花の仕分け作業"></div>
+        <div class="job-body">
+          <h3><span class="job-num">1</span>花の仕分け・水やり</h3>
+          <p>入荷した花の検品・仕分けを行い、状態に合わせた水やり・管理を行います。植物に触れることが好きな方に人気の作業です。</p>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <div class="job-photo"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=300&q=80" alt="ラッピング作業"></div>
+        <div class="job-body">
+          <h3><span class="job-num">2</span>ラッピング・梱包作業</h3>
+          <p>花束やアレンジメントのラッピング、配送用の梱包作業を行います。丁寧な手作業が得意な方におすすめです。</p>
+        </div>
+      </div>
+
+      <div class="job-card">
+        <div class="job-photo"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=300&q=80" alt="店内ディスプレイ"></div>
+        <div class="job-body">
+          <h3><span class="job-num">3</span>店内ディスプレイ・陳列</h3>
+          <p>提携フラワーショップの店内ディスプレイの手伝いや、商品の陳列作業を行います。センスを活かせる作業です。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">🛟</span>サポート体制</h2>
+      <p>スタッフが一人ひとりの状況に合わせて寄り添いながら、無理のないペースで作業に取り組めるようサポートします。</p>
+      <div class="support-grid">
+        <div class="support-item">
+          <div class="s-icon">👥</div>
+          <div><h4>個別支援計画の作成</h4><p>利用者様一人ひとりの目標や状況に合わせた個別支援計画を作成し、定期的に見直します。</p></div>
+        </div>
+        <div class="support-item">
+          <div class="s-icon">💬</div>
+          <div><h4>定期的な面談・相談</h4><p>月1回以上のスタッフとの面談を実施し、不安や悩みをいつでも相談できる体制を整えています。</p></div>
+        </div>
+        <div class="support-item">
+          <div class="s-icon">🚐</div>
+          <div><h4>送迎サポート</h4><p>一部エリアで送迎サービスを実施しています。詳細は事業所までお問い合わせください。</p></div>
+        </div>
+        <div class="support-item">
+          <div class="s-icon">🍱</div>
+          <div><h4>昼食の提供</h4><p>希望者には昼食の提供を行っています（一部費用がかかります）。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">📍</span>アクセス</h2>
+      <div class="access-grid">
+        <ul class="access-list">
+          <li><span class="a-icon">🏠</span>大阪府大阪市天王寺区大道四丁目10番13号 寺田町吉泉ビル3F</li>
+          <li><span class="a-icon">🚉</span>JR大和路線「寺田町駅」より徒歩3分</li>
+          <li><span class="a-icon">🚉</span>Osaka Metro谷町線「文の里駅」より徒歩8分</li>
+          <li><span class="a-icon">🚗</span>近隣にコインパーキングあり（事業所専用駐車場はございません）</li>
+        </ul>
+        <div class="map-box">📍 地図エリア（Googleマップ埋め込み想定）</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2><span class="icon">🏢</span>事業所基本情報</h2>
+      <table class="info-table">
+        <tr><th>事業所の名称</th><td>ハートフェルト・フローラル・プロジェクト 寺田町</td></tr>
+        <tr><th>事業所の名称（かな）</th><td>はーとふぇるとふろーらるぷろじぇくとてらだちょう</td></tr>
+        <tr><th>サービス種別</th><td>就労継続支援B型</td></tr>
+        <tr><th>事業所番号</th><td>2711701462</td></tr>
+        <tr><th>所在地</th><td>大阪府大阪市天王寺区大道四丁目10番13号 寺田町吉泉ビル3F</td></tr>
+        <tr><th>電話番号</th><td>06-6772-8717</td></tr>
+        <tr><th>FAX番号</th><td>06-7635-8718</td></tr>
+        <tr><th>メールアドレス</th><td>info.teradacho@hffp-b.com</td></tr>
+        <tr><th>事業所URL</th><td><a href="https://teradacho.hffp-b.com/" style="color:var(--main);">https://teradacho.hffp-b.com/</a></td></tr>
+        <tr><th>利用可能な時間帯</th><td>
+          平日 09:30–16:00　／　土曜 09:30–16:00　／　日曜 休み　／　祝日 09:30–16:00<br>
+          <span style="color:var(--sub);">定休日：日曜日</span>
+        </td></tr>
+      </table>
+    </div>
+
+  </main>
+
+  <aside id="contact">
+    <div class="side-card">
+      <h3>この事業所に問い合わせる</h3>
+      <div class="side-info">
+        <b>所在地</b>
+        大阪市天王寺区大道四丁目10番13号<br>寺田町吉泉ビル3F
+        <br><br>
+        <b>電話番号</b>
+        06-6772-8717
+        <br><br>
+        <b>利用時間</b>
+        平日・土・祝 09:30–16:00（日曜休み）
+      </div>
+      <a class="cta-btn" href="#">見学・お問い合わせ</a>
+      <a class="cta-btn secondary" href="#">資料をダウンロード</a>
+      <p class="side-note">掲載内容に関するお問い合わせは事業所まで直接ご連絡ください。</p>
+    </div>
+  </aside>
+</div>
+
+<a class="float-cta" href="#contact">💬 問い合わせはこちらから</a>
+
+<footer>
+  Copyright © 2026 就労支援のまどぐち｜A型・B型・相談支援・就労移行 事業所で働くスタッフを支援
+</footer>
+
+</body>
+</html>
