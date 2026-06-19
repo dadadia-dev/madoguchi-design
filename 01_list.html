@@ -103,6 +103,9 @@
     background:var(--surface); border:1px solid var(--line);
     border-radius:16px; padding:18px 18px 8px; margin-bottom:18px;
   }
+  .filter-summary{display:none; cursor:pointer; font-weight:700; font-size:14px; list-style:none;}
+  .filter-summary::-webkit-details-marker{display:none;}
+  .filter-body{display:block;}
   .filter-box h3{
     font-size:14px; margin:0 0 12px; display:flex; align-items:center; gap:6px;
   }
@@ -217,9 +220,34 @@
     .btn-ghost{display:none;}
 
     .layout{grid-template-columns:1fr;}
-    .sidebar{position:static;}
-    .card{grid-template-columns:1fr;}
-    .card-photo img{min-height:180px;}
+    .filter-box{padding:0;}
+    .filter-summary{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 16px; font-size:13.5px;
+    }
+    .filter-summary::after{content:'▾'; color:var(--main); font-size:12px;}
+    details[open] .filter-summary::after{content:'▴';}
+    .filter-body{padding:0 16px 14px;}
+    details:not([open]) .filter-body{display:none;}
+
+    .sidebar{position:static; margin-bottom:16px;}
+    .ad-box{display:none;}
+    .card{grid-template-columns:104px 1fr;}
+    .card-photo{aspect-ratio:1/1;}
+    .card-photo img{min-height:0; height:100%;}
+    .badge{font-size:9px; padding:3px 7px; top:5px; left:5px;}
+
+    .card-body{padding:11px 12px; gap:5px;}
+    .card-top{gap:6px;}
+    .card-title{font-size:14px; line-height:1.35;}
+    .card-area{font-size:10.5px; padding:1px 7px;}
+    .card-desc{display:none;}
+    .tag-row{gap:5px; margin-top:0;}
+    .tag{font-size:10px; padding:2px 8px;}
+
+    .card-foot{display:none;}
+    .card-cta-row{margin-top:5px; gap:6px;}
+    .card-cta{padding:6px 0; font-size:11px;}
     nav.main-nav{display:none;}
 
     footer{padding:24px 16px; font-size:11px; line-height:1.7;}
@@ -258,7 +286,9 @@
 
   <!-- Sidebar -->
   <aside class="sidebar">
-    <div class="filter-box">
+    <details class="filter-box" open>
+      <summary class="filter-summary">🔍 絞り込み条件</summary>
+      <div class="filter-body">
       <h3><span class="dot"></span>サービス種別</h3>
       <div class="chip-row">
         <span class="chip">A型</span>
@@ -289,7 +319,8 @@
         <label><input type="checkbox"> 泉佐野市</label>
         <label><input type="checkbox"> 藤井寺市</label>
       </div>
-    </div>
+      </div>
+    </details>
 
     <div class="ad-box">
       <strong>事業所会員の方へ</strong>
