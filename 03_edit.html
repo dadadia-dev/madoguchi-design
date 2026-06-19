@@ -14,7 +14,7 @@
     --danger:#C0563F;
   }
   *{box-sizing:border-box;}
-  body{margin:0; font-family:'Noto Sans JP', sans-serif; background:var(--bg); color:var(--text); line-height:1.7;}
+  body{margin:0; font-family:'Noto Sans JP', sans-serif; background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden;}
   h1,h2,h3,.brand{font-family:'Zen Maru Gothic', sans-serif;}
 
   header.site{background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;}
@@ -72,6 +72,7 @@
   .preview-note{
     font-size:11.5px; color:var(--main-dark); background:var(--main-light); border-radius:8px;
     padding:6px 10px; margin-bottom:10px; display:inline-flex; align-items:center; gap:5px;
+    max-width:100%; flex-wrap:wrap;
   }
 
   .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
@@ -171,6 +172,7 @@
     .job-edit-body{grid-template-columns:1fr;}
     .job-edit-photo{height:160px;}
     .target-check-grid{grid-template-columns:1fr 1fr;}
+    .tag-input-box input{min-width:0; width:100%;}
 
     .action-bar{flex-direction:column; gap:10px; border-radius:0; padding:14px 16px;}
     .save-status{font-size:11px;}
