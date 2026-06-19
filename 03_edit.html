@@ -18,72 +18,74 @@
   h1,h2,h3,.brand{font-family:'Zen Maru Gothic', sans-serif;}
 
   header.site{background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:50;}
-  .header-inner{max-width:1180px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px;}
+  .header-inner{max-width:1280px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px;}
   .brand{display:flex; align-items:center; gap:10px; font-weight:900; font-size:20px; color:var(--main-dark); text-decoration:none;}
   .brand .mark{width:36px; height:36px; border-radius:10px; background:var(--main); color:#fff; display:flex; align-items:center; justify-content:center; font-size:18px;}
-  .header-actions{display:flex; gap:10px;}
+  .header-actions{display:flex; align-items:center; gap:12px;}
+  .header-actions .who{font-size:13px; color:var(--sub);}
   .btn{display:inline-flex; align-items:center; justify-content:center; padding:9px 18px; border-radius:24px; font-size:13px; font-weight:700; text-decoration:none; cursor:pointer; border:1px solid transparent;}
   .btn-ghost{border-color:var(--line); color:var(--sub); background:#fff;}
 
-  .breadcrumb{max-width:920px; margin:0 auto; padding:14px 24px 0; font-size:12px; color:var(--sub);}
+  .breadcrumb{max-width:1280px; margin:0 auto; padding:14px 24px 0; font-size:12px; color:var(--sub);}
   .breadcrumb a{color:var(--sub); text-decoration:none;}
 
-  .page-head{max-width:920px; margin:0 auto; padding:18px 24px 0;}
+  .page-head{max-width:1280px; margin:0 auto; padding:18px 24px 0;}
   .page-head h1{font-size:24px; margin:6px 0 4px;}
   .page-head .lead{color:var(--sub); font-size:13.5px; margin:0 0 8px;}
   .status-line{
-    display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--sub); margin-bottom:18px;
+    display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--sub); margin-bottom:6px; flex-wrap:wrap;
   }
   .status-dot{width:8px; height:8px; border-radius:50%; background:var(--main); display:inline-block;}
+  .preview-link{
+    margin-left:auto; font-size:12.5px; font-weight:700; color:var(--main); text-decoration:none;
+    display:flex; align-items:center; gap:4px;
+  }
 
-  /* Step indicator */
-  .steps{
-    max-width:920px; margin:0 auto; padding:0 24px 28px; display:flex; gap:0;
-  }
-  .step{flex:1; text-align:center; position:relative; font-size:12.5px; color:var(--sub);}
-  .step .num{
-    width:30px; height:30px; border-radius:50%; background:#fff; border:2px solid var(--line);
-    display:flex; align-items:center; justify-content:center; margin:0 auto 6px; font-weight:700; color:var(--sub);
-  }
-  .step.active .num, .step.done .num{background:var(--main); border-color:var(--main); color:#fff;}
-  .step.active{color:var(--main-dark); font-weight:700;}
-  .step:not(:last-child)::after{
-    content:''; position:absolute; top:15px; left:60%; width:80%; height:2px; background:var(--line); z-index:0;
-  }
-  .step.done:not(:last-child)::after{background:var(--main);}
+  /* レイアウト：目次サイドナビ＋フォーム */
+  .layout{max-width:1280px; margin:0 auto; padding:20px 24px 90px; display:grid; grid-template-columns:220px 1fr; gap:28px;}
 
-  .form-wrap{max-width:920px; margin:0 auto; padding:0 24px 80px;}
-
-  .section{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:30px; margin-bottom:22px;}
-  .section h2{
-    font-size:16px; margin:0 0 4px; display:flex; align-items:center; gap:8px;
+  .toc{position:sticky; top:84px; align-self:start;}
+  .toc-box{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:18px 0;}
+  .toc-box a{
+    display:flex; align-items:center; gap:10px; padding:10px 18px; font-size:13px; color:var(--sub);
+    text-decoration:none; border-left:3px solid transparent;
   }
+  .toc-box a .toc-num{
+    width:20px; height:20px; border-radius:50%; background:var(--bg); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-size:10.5px; flex-shrink:0; color:var(--sub);
+  }
+  .toc-box a.done .toc-num{background:var(--main-light); border-color:var(--main); color:var(--main-dark);}
+  .toc-box a:hover{background:var(--bg); color:var(--main-dark);}
+  .toc-box a.current{border-left-color:var(--accent); background:var(--main-light); color:var(--main-dark); font-weight:700;}
+
+  .form-wrap{min-width:0;}
+
+  .section{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:28px; margin-bottom:20px; scroll-margin-top:84px;}
+  .section h2{font-size:16px; margin:0 0 4px; display:flex; align-items:center; gap:8px;}
   .section h2 .icon{
     width:26px; height:26px; border-radius:8px; background:var(--main-light); color:var(--main-dark);
     display:flex; align-items:center; justify-content:center; font-size:13px;
   }
-  .section .desc{font-size:12.5px; color:var(--sub); margin:0 0 22px; padding-left:34px;}
+  .section .desc{font-size:12.5px; color:var(--sub); margin:0 0 20px; padding-left:34px;}
+
+  /* プレビュー注記：このフィールドが詳細ページのどこに出るかを示す */
+  .preview-note{
+    font-size:11.5px; color:var(--main-dark); background:var(--main-light); border-radius:8px;
+    padding:6px 10px; margin-bottom:10px; display:inline-flex; align-items:center; gap:5px;
+  }
 
   .field-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
   .field{margin-bottom:18px;}
   .field.full{grid-column:1 / -1;}
-  .field label{
-    display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; margin-bottom:7px;
-  }
-  .field label .required{
-    font-size:10.5px; background:var(--danger); color:#fff; padding:2px 7px; border-radius:8px; font-weight:700;
-  }
-  .field label .optional{
-    font-size:10.5px; background:var(--bg); color:var(--sub); border:1px solid var(--line); padding:2px 7px; border-radius:8px; font-weight:500;
-  }
+  .field label{display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; margin-bottom:7px;}
+  .field label .required{font-size:10.5px; background:var(--danger); color:#fff; padding:2px 7px; border-radius:8px; font-weight:700;}
+  .field label .optional{font-size:10.5px; background:var(--bg); color:var(--sub); border:1px solid var(--line); padding:2px 7px; border-radius:8px; font-weight:500;}
   .field .hint{font-size:11.5px; color:var(--sub); margin-top:5px;}
   input[type=text], input[type=tel], input[type=email], input[type=url], textarea, select{
     width:100%; border:1px solid var(--line); border-radius:10px; padding:11px 13px;
     font-size:14px; font-family:inherit; color:var(--text); background:#fff;
   }
-  input:focus, textarea:focus, select:focus{
-    outline:none; border-color:var(--main); box-shadow:0 0 0 3px var(--main-light);
-  }
+  input:focus, textarea:focus, select:focus{outline:none; border-color:var(--main); box-shadow:0 0 0 3px var(--main-light);}
   textarea{resize:vertical; min-height:90px;}
 
   .char-count{font-size:11px; color:var(--sub); text-align:right; margin-top:4px;}
@@ -91,70 +93,52 @@
   .time-row{display:grid; grid-template-columns:90px 1fr 1fr; gap:10px; align-items:center; margin-bottom:8px; font-size:13px;}
   .time-row span{color:var(--sub);}
 
-  .tag-input-box{
-    display:flex; flex-wrap:wrap; gap:8px; border:1px solid var(--line); border-radius:10px; padding:10px;
-  }
-  .tag-input-box .tag{
-    background:var(--accent-light); color:#9C5A2D; font-size:12.5px; padding:5px 12px; border-radius:14px;
-    display:flex; align-items:center; gap:6px;
-  }
-  .tag-input-box .tag button{
-    border:none; background:none; color:#9C5A2D; cursor:pointer; font-size:13px; padding:0;
-  }
+  .tag-input-box{display:flex; flex-wrap:wrap; gap:8px; border:1px solid var(--line); border-radius:10px; padding:10px;}
+  .tag-input-box .tag{background:var(--accent-light); color:#9C5A2D; font-size:12.5px; padding:5px 12px; border-radius:14px; display:flex; align-items:center; gap:6px;}
+  .tag-input-box .tag button{border:none; background:none; color:#9C5A2D; cursor:pointer; font-size:13px; padding:0;}
   .tag-input-box input{border:none; flex:1; min-width:120px; padding:5px;}
   .tag-input-box input:focus{box-shadow:none;}
 
-  .upload-box{
-    border:2px dashed var(--line); border-radius:14px; padding:28px; text-align:center;
-    background:var(--bg); color:var(--sub); font-size:13px;
+  /* 対象となる障害・症状（チェックボックス） */
+  .target-check-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px;}
+  .target-check{
+    display:flex; align-items:center; gap:9px; border:1.5px solid var(--line); border-radius:12px;
+    padding:12px 14px; cursor:pointer; font-size:13.5px; font-weight:500; background:var(--bg);
   }
+  .target-check input{width:17px; height:17px; accent-color:var(--main); flex-shrink:0;}
+  .target-check.checked{border-color:var(--main); background:var(--main-light); color:var(--main-dark); font-weight:700;}
+
+  .upload-box{border:2px dashed var(--line); border-radius:14px; padding:28px; text-align:center; background:var(--bg); color:var(--sub); font-size:13px;}
   .upload-box .icon{font-size:26px; display:block; margin-bottom:8px;}
   .upload-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;}
-  .upload-thumb{
-    aspect-ratio:1; border-radius:10px; background:var(--main-light); display:flex; align-items:center; justify-content:center;
-    overflow:hidden; position:relative;
-  }
+  .upload-thumb{aspect-ratio:1; border-radius:10px; background:var(--main-light); display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;}
   .upload-thumb img{width:100%; height:100%; object-fit:cover;}
-  .upload-thumb .remove{
-    position:absolute; top:4px; right:4px; width:20px; height:20px; border-radius:50%;
-    background:rgba(0,0,0,0.5); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px;
+  .upload-thumb .main-flag{
+    position:absolute; top:5px; left:5px; background:var(--accent); color:#fff; font-size:9.5px; font-weight:700;
+    padding:2px 7px; border-radius:8px;
   }
+  .upload-thumb .remove{position:absolute; top:4px; right:4px; width:20px; height:20px; border-radius:50%; background:rgba(0,0,0,0.5); color:#fff; display:flex; align-items:center; justify-content:center; font-size:11px;}
 
   /* 仕事内容カード（編集） */
-  .job-edit-card{
-    border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:14px; background:var(--bg);
-  }
+  .job-edit-card{border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:14px; background:var(--bg);}
   .job-edit-head{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
-  .job-edit-num{
-    width:24px; height:24px; border-radius:50%; background:var(--main); color:#fff;
-    display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;
-  }
+  .job-edit-num{width:24px; height:24px; border-radius:50%; background:var(--main); color:#fff; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;}
   .job-edit-head input{flex:1; font-weight:700;}
-  .job-remove-btn{
-    border:1px solid var(--line); background:#fff; color:var(--danger); border-radius:18px;
-    padding:6px 14px; font-size:12px; cursor:pointer; flex-shrink:0;
-  }
+  .job-remove-btn{border:1px solid var(--line); background:#fff; color:var(--danger); border-radius:18px; padding:6px 14px; font-size:12px; cursor:pointer; flex-shrink:0;}
   .job-edit-body{display:grid; grid-template-columns:160px 1fr; gap:14px;}
-  .job-edit-photo{
-    border-radius:10px; overflow:hidden; height:110px; position:relative; background:var(--main-light);
-  }
+  .job-edit-photo{border-radius:10px; overflow:hidden; height:110px; position:relative; background:var(--main-light);}
   .job-edit-photo img{width:100%; height:100%; object-fit:cover; display:block;}
-  .job-photo-change{
-    position:absolute; bottom:0; left:0; right:0; background:rgba(43,43,40,0.65); color:#fff;
-    border:none; padding:6px 0; font-size:11px; cursor:pointer;
-  }
-  .add-job-btn{
-    width:100%; border:1.5px dashed var(--main); background:#fff; color:var(--main);
-    border-radius:12px; padding:12px; font-size:13.5px; font-weight:700; cursor:pointer;
-  }
+  .job-photo-change{position:absolute; bottom:0; left:0; right:0; background:rgba(43,43,40,0.65); color:#fff; border:none; padding:6px 0; font-size:11px; cursor:pointer;}
+  .add-item-btn{width:100%; border:1.5px dashed var(--main); background:#fff; color:var(--main); border-radius:12px; padding:12px; font-size:13.5px; font-weight:700; cursor:pointer;}
 
   /* サポート体制（編集） */
   .support-edit-row{display:flex; gap:10px; margin-bottom:10px;}
   .support-edit-row input{flex:1;}
+
   .action-bar{
     position:sticky; bottom:0; background:var(--surface); border-top:1px solid var(--line);
     padding:16px 24px; display:flex; justify-content:space-between; align-items:center;
-    max-width:920px; margin:0 auto; border-radius:18px 18px 0 0; box-shadow:0 -8px 24px rgba(0,0,0,0.04);
+    max-width:1280px; margin:0 auto; border-radius:18px 18px 0 0; box-shadow:0 -8px 24px rgba(0,0,0,0.04);
   }
   .save-status{font-size:12px; color:var(--sub);}
   .action-buttons{display:flex; gap:10px;}
@@ -164,31 +148,36 @@
 
   footer{background:var(--main-dark); color:#fff; padding:32px 24px; font-size:12px; text-align:center;}
 
+  @media (max-width:980px){
+    .layout{grid-template-columns:1fr;}
+    .toc{position:static;}
+    .toc-box{display:flex; overflow-x:auto; padding:10px; gap:4px;}
+    .toc-box a{flex-direction:column; gap:4px; padding:8px 12px; border-left:none; border-bottom:3px solid transparent; white-space:nowrap; font-size:11.5px;}
+    .toc-box a.current{border-left-color:transparent; border-bottom-color:var(--accent);}
+  }
+
   @media (max-width:760px){
     .header-inner{padding:12px 16px; gap:8px;}
     .brand{font-size:16px;}
     .brand .mark{width:30px; height:30px; font-size:15px;}
     .header-actions{flex-direction:column; align-items:flex-end; gap:6px;}
-    .header-actions span{font-size:11px;}
+    .header-actions .who{font-size:11px;}
     .header-actions .btn{padding:7px 12px; font-size:11.5px; white-space:nowrap;}
+
+    .preview-link{margin-left:0;}
 
     .field-grid{grid-template-columns:1fr;}
     .upload-grid{grid-template-columns:repeat(2,1fr);}
     .job-edit-body{grid-template-columns:1fr;}
     .job-edit-photo{height:160px;}
+    .target-check-grid{grid-template-columns:1fr 1fr;}
 
-    .action-bar{
-      flex-direction:column; gap:10px; border-radius:0; padding:14px 16px;
-    }
+    .action-bar{flex-direction:column; gap:10px; border-radius:0; padding:14px 16px;}
     .save-status{font-size:11px;}
     .action-buttons{width:100%; flex-direction:column; gap:8px;}
     .action-buttons button{width:100%; padding:13px 0;}
 
     footer{padding:24px 16px; font-size:11px; line-height:1.7;}
-
-    .steps{padding:0 16px 20px; gap:0;}
-    .step{font-size:10px;}
-    .step .num{width:24px; height:24px; font-size:12px;}
   }
 </style>
 </head>
@@ -198,7 +187,7 @@
   <div class="header-inner">
     <a class="brand" href="#"><span class="mark">窓</span>就労支援のまどぐち</a>
     <div class="header-actions">
-      <span style="font-size:13px; color:var(--sub);">ハートフェルト・フローラル・プロジェクト 寺田町 様</span>
+      <span class="who">ハートフェルト・フローラル・プロジェクト 寺田町 様</span>
       <a class="btn btn-ghost" href="#">マイページへ戻る</a>
     </div>
   </div>
@@ -210,193 +199,236 @@
 
 <div class="page-head">
   <h1>事業所情報の編集</h1>
-  <p class="lead">入力された情報は審査後にサイトへ反映されます。基本情報は変更の都度、運営事務局による確認を行います。</p>
+  <p class="lead">入力された内容は審査後にサイトへ反映されます。基本情報は変更の都度、運営事務局による確認を行います。</p>
   <div class="status-line">
     <span class="status-dot"></span>
     最終更新：2026年6月18日 14:32　/　公開状態：公開中
+    <a class="preview-link" href="02_detail.html" target="_blank">👁 公開中のページを見る →</a>
   </div>
 </div>
 
-<div class="steps">
-  <div class="step done"><div class="num">✓</div>基本情報</div>
-  <div class="step active"><div class="num">2</div>特徴・写真</div>
-  <div class="step"><div class="num">3</div>仕事内容・サポート</div>
-  <div class="step"><div class="num">4</div>確認・申請</div>
-</div>
+<div class="layout">
 
-<div class="form-wrap">
+  <!-- 目次ナビ：詳細ページの掲載順と完全に一致させ、迷子を防ぐ -->
+  <nav class="toc">
+    <div class="toc-box">
+      <a href="#sec-basic" class="current"><span class="toc-num">1</span>基本情報</a>
+      <a href="#sec-copy"><span class="toc-num">2</span>紹介文・キャッチコピー</a>
+      <a href="#sec-feature"><span class="toc-num">3</span>特徴</a>
+      <a href="#sec-target"><span class="toc-num">4</span>対象となる障害</a>
+      <a href="#sec-job"><span class="toc-num">5</span>仕事内容</a>
+      <a href="#sec-support"><span class="toc-num">6</span>サポート体制</a>
+      <a href="#sec-access"><span class="toc-num">7</span>アクセス</a>
+      <a href="#sec-photo"><span class="toc-num">8</span>写真</a>
+      <a href="#sec-time"><span class="toc-num">9</span>利用時間</a>
+    </div>
+  </nav>
 
-  <div class="section">
-    <h2><span class="icon">🏢</span>事業所の基本情報</h2>
-    <p class="desc">指定申請時の情報をもとに表示しています。変更がある場合のみ修正してください。</p>
+  <div class="form-wrap">
 
-    <div class="field-grid">
-      <div class="field">
-        <label>事業所の名称 <span class="required">必須</span></label>
-        <input type="text" value="ハートフェルト・フローラル・プロジェクト 寺田町">
+    <div class="section" id="sec-basic">
+      <h2><span class="icon">🏢</span>1. 事業所の基本情報</h2>
+      <p class="desc">指定申請時の情報をもとに表示しています。変更がある場合のみ修正してください。</p>
+
+      <div class="field-grid">
+        <div class="field">
+          <label>事業所の名称 <span class="required">必須</span></label>
+          <input type="text" value="ハートフェルト・フローラル・プロジェクト 寺田町">
+          <div class="hint">詳細ページの見出し（タイトル）として表示されます。</div>
+        </div>
+        <div class="field">
+          <label>事業所の名称（かな） <span class="required">必須</span></label>
+          <input type="text" value="はーとふぇるとふろーらるぷろじぇくとてらだちょう">
+        </div>
+        <div class="field">
+          <label>サービス種別 <span class="required">必須</span></label>
+          <select>
+            <option selected>就労継続支援B型</option>
+            <option>就労継続支援A型</option>
+            <option>就労移行支援</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>事業所番号 <span class="required">必須</span></label>
+          <input type="text" value="2711701462" disabled style="background:var(--bg); color:var(--sub);">
+          <div class="hint">事業所番号は指定申請情報と連動しているため編集できません。</div>
+        </div>
+        <div class="field full">
+          <label>所在地 <span class="required">必須</span></label>
+          <input type="text" value="大阪府大阪市天王寺区大道四丁目10番13号 寺田町吉泉ビル3F">
+        </div>
+        <div class="field">
+          <label>電話番号 <span class="required">必須</span></label>
+          <input type="tel" value="06-6772-8717">
+        </div>
+        <div class="field">
+          <label>FAX番号 <span class="optional">任意</span></label>
+          <input type="tel" value="06-7635-8718">
+        </div>
+        <div class="field">
+          <label>メールアドレス <span class="required">必須</span></label>
+          <input type="email" value="info.teradacho@hffp-b.com">
+        </div>
+        <div class="field">
+          <label>事業所URL <span class="optional">任意</span></label>
+          <input type="url" value="https://teradacho.hffp-b.com/">
+        </div>
       </div>
-      <div class="field">
-        <label>事業所の名称（かな） <span class="required">必須</span></label>
-        <input type="text" value="はーとふぇるとふろーらるぷろじぇくとてらだちょう">
-      </div>
-      <div class="field">
-        <label>サービス種別 <span class="required">必須</span></label>
-        <select>
-          <option selected>就労継続支援B型</option>
-          <option>就労継続支援A型</option>
-          <option>就労移行支援</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>事業所番号 <span class="required">必須</span></label>
-        <input type="text" value="2711701462" disabled style="background:var(--bg); color:var(--sub);">
-        <div class="hint">事業所番号は指定申請情報と連動しているため編集できません。</div>
-      </div>
+    </div>
+
+    <div class="section" id="sec-copy">
+      <h2><span class="icon">✦</span>2. 紹介文・キャッチコピー</h2>
+      <p class="desc">利用希望者が事業所を選ぶ際に最初に目にする情報です。具体的に記載すると問い合わせにつながりやすくなります。</p>
+
       <div class="field full">
-        <label>所在地 <span class="required">必須</span></label>
-        <input type="text" value="大阪府大阪市天王寺区大道四丁目10番13号 寺田町吉泉ビル3F">
+        <label>キャッチコピー <span class="required">必須</span></label>
+        <span class="preview-note">📍 事業所名のすぐ下に、補足の一言として表示されます</span>
+        <input type="text" value="【JR寺田町駅徒歩3分】お花に囲まれて働きませんか？ 提携フラワーショップの運営を支える就労継続支援B型">
+        <div class="char-count">52 / 60文字</div>
       </div>
-      <div class="field">
-        <label>電話番号 <span class="required">必須</span></label>
-        <input type="tel" value="06-6772-8717">
-      </div>
-      <div class="field">
-        <label>FAX番号 <span class="optional">任意</span></label>
-        <input type="tel" value="06-7635-8718">
-      </div>
-      <div class="field">
-        <label>メールアドレス <span class="required">必須</span></label>
-        <input type="email" value="info.teradacho@hffp-b.com">
-      </div>
-      <div class="field">
-        <label>事業所URL <span class="optional">任意</span></label>
-        <input type="url" value="https://teradacho.hffp-b.com/">
+
+      <div class="field full">
+        <label>事業所紹介文 <span class="required">必須</span></label>
+        <span class="preview-note">📍 「事業所紹介文」セクションの本文として表示されます</span>
+        <textarea>当事業所は、JR寺田町駅から徒歩3分の好立地にある就労継続支援B型事業所です。最大の特長は、提携しているお花屋さん「flower shop Style寺田町」の運営支援を中心としたお仕事ができること。お花が好きな方、ものづくりや手作業に興味がある方にぴったりの、彩り豊かな職場環境です。</textarea>
+        <div class="char-count">128 / 400文字</div>
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2><span class="icon">✦</span>特徴・お仕事内容</h2>
-    <p class="desc">利用希望者が事業所を選ぶ際に参考にする情報です。具体的に記載すると問い合わせにつながりやすくなります。</p>
+    <div class="section" id="sec-feature">
+      <h2><span class="icon">⭐</span>3. 事業所の特徴</h2>
+      <p class="desc">「駅徒歩〇分」など、事業所のアピールポイントを短いフレーズで登録します。一覧ページのこだわりタグとしても使用されます。</p>
 
-    <div class="field full">
-      <label>キャッチコピー（タイトル） <span class="required">必須</span></label>
-      <input type="text" value="【JR寺田町駅徒歩3分】お花に囲まれて働きませんか？ 提携フラワーショップの運営を支える就労継続支援B型">
-      <div class="char-count">52 / 60文字</div>
-    </div>
-
-    <div class="field full">
-      <label>事業所の特徴・紹介文 <span class="required">必須</span></label>
-      <textarea>当事業所は、JR寺田町駅から徒歩3分の好立地にある就労継続支援B型事業所です。最大の特長は、提携しているお花屋さん「flower shop Style寺田町」の運営支援を中心としたお仕事ができること。お花が好きな方、ものづくりや手作業に興味がある方にぴったりの、彩り豊かな職場環境です。</textarea>
-      <div class="char-count">128 / 400文字</div>
-    </div>
-
-    <div class="field full">
-      <label>こだわり条件タグ <span class="optional">任意</span></label>
-      <div class="tag-input-box">
-        <span class="tag">花・植物 <button>×</button></span>
-        <span class="tag">駅近3分 <button>×</button></span>
-        <span class="tag">軽作業 <button>×</button></span>
-        <input type="text" placeholder="タグを入力してEnter">
+      <div class="field full">
+        <label>特徴タグ <span class="optional">任意（推奨）</span></label>
+        <div class="tag-input-box">
+          <span class="tag">JR寺田町駅 徒歩3分 <button>×</button></span>
+          <span class="tag">花・植物が好きな方歓迎 <button>×</button></span>
+          <span class="tag">提携フラワーショップ運営支援 <button>×</button></span>
+          <input type="text" placeholder="特徴を入力してEnter">
+        </div>
+        <div class="hint">「送迎あり」「在宅OK」「食事提供」など、最大10個まで設定できます。</div>
       </div>
-      <div class="hint">「送迎あり」「在宅OK」「食事提供」など、最大10個まで設定できます。</div>
     </div>
 
-    <div class="field full">
-      <label>事業所の写真 <span class="optional">任意（推奨）</span></label>
+    <div class="section" id="sec-target">
+      <h2><span class="icon">🧑‍🤝‍🧑</span>4. 対象となる障害・症状</h2>
+      <p class="desc">主に受け入れ実績のある区分にチェックしてください。複数選択できます。</p>
+
+      <div class="target-check-grid">
+        <label class="target-check checked"><input type="checkbox" checked>精神障害</label>
+        <label class="target-check checked"><input type="checkbox" checked>発達障害</label>
+        <label class="target-check checked"><input type="checkbox" checked>知的障害</label>
+        <label class="target-check"><input type="checkbox">身体障害</label>
+        <label class="target-check checked"><input type="checkbox" checked>難病</label>
+        <label class="target-check"><input type="checkbox">高次脳機能障害</label>
+      </div>
+    </div>
+
+    <div class="section" id="sec-job">
+      <h2><span class="icon">📋</span>5. お仕事内容</h2>
+      <p class="desc">利用者様が選べる作業内容を1つずつカードで登録します。それぞれに写真を1枚添付できます。</p>
+
+      <div class="job-edit-card">
+        <div class="job-edit-head">
+          <span class="job-edit-num">1</span>
+          <input type="text" value="花の仕分け・水やり" placeholder="作業名">
+          <button class="job-remove-btn">削除</button>
+        </div>
+        <div class="job-edit-body">
+          <div class="job-edit-photo">
+            <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=200&q=80" alt="">
+            <button class="job-photo-change">写真を変更</button>
+          </div>
+          <textarea style="min-height:80px;">入荷した花の検品・仕分けを行い、状態に合わせた水やり・管理を行います。植物に触れることが好きな方に人気の作業です。</textarea>
+        </div>
+      </div>
+
+      <div class="job-edit-card">
+        <div class="job-edit-head">
+          <span class="job-edit-num">2</span>
+          <input type="text" value="ラッピング・梱包作業" placeholder="作業名">
+          <button class="job-remove-btn">削除</button>
+        </div>
+        <div class="job-edit-body">
+          <div class="job-edit-photo">
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=200&q=80" alt="">
+            <button class="job-photo-change">写真を変更</button>
+          </div>
+          <textarea style="min-height:80px;">花束やアレンジメントのラッピング、配送用の梱包作業を行います。丁寧な手作業が得意な方におすすめです。</textarea>
+        </div>
+      </div>
+
+      <button class="add-item-btn">＋ 仕事内容を追加する</button>
+    </div>
+
+    <div class="section" id="sec-support">
+      <h2><span class="icon">🛟</span>6. サポート体制</h2>
+      <p class="desc">利用者様向けのサポート内容を箇条書きで登録できます。</p>
+
+      <div class="support-edit-row">
+        <input type="text" value="個別支援計画の作成">
+        <button class="job-remove-btn">削除</button>
+      </div>
+      <div class="support-edit-row">
+        <input type="text" value="定期的な面談・相談（月1回以上）">
+        <button class="job-remove-btn">削除</button>
+      </div>
+      <div class="support-edit-row">
+        <input type="text" value="送迎サポート（一部エリア）">
+        <button class="job-remove-btn">削除</button>
+      </div>
+      <button class="add-item-btn">＋ サポート内容を追加する</button>
+    </div>
+
+    <div class="section" id="sec-access">
+      <h2><span class="icon">📍</span>7. アクセス</h2>
+      <p class="desc">最寄り駅やルートなど、来所方法に関する情報を登録してください。</p>
+
+      <div class="field full">
+        <label>アクセス情報 <span class="optional">任意</span></label>
+        <textarea style="min-height:110px;">JR大和路線「寺田町駅」より徒歩3分
+Osaka Metro谷町線「文の里駅」より徒歩8分
+近隣にコインパーキングあり（事業所専用駐車場はございません）</textarea>
+        <div class="hint">1行ごとに改行して入力してください。詳細ページでは1行ずつリスト表示されます。</div>
+      </div>
+    </div>
+
+    <div class="section" id="sec-photo">
+      <h2><span class="icon">🖼</span>8. 事業所の写真</h2>
+      <p class="desc">詳細ページ上部のギャラリーに表示されます。1枚目が一覧ページのメイン画像にもなります。</p>
+
       <div class="upload-grid">
-        <div class="upload-thumb"><img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=200&q=80" alt=""><span class="remove">×</span></div>
+        <div class="upload-thumb">
+          <span class="main-flag">メイン</span>
+          <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=200&q=80" alt="">
+          <span class="remove">×</span>
+        </div>
         <div class="upload-thumb"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=200&q=80" alt=""><span class="remove">×</span></div>
         <div class="upload-thumb"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=200&q=80" alt=""><span class="remove">×</span></div>
         <div class="upload-box" style="display:flex; flex-direction:column; align-items:center; justify-content:center; aspect-ratio:1; padding:0;">
           <span class="icon">＋</span>追加する
         </div>
       </div>
-      <div class="hint">最大8枚まで登録できます（JPEG / PNG、1枚5MBまで）。1枚目が一覧ページのメイン画像になります。</div>
+      <div class="hint">最大8枚まで登録できます（JPEG / PNG、1枚5MBまで）。ドラッグで並び替えできます。</div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2><span class="icon">🕒</span>利用可能な時間帯</h2>
-    <p class="desc">曜日ごとの利用時間と定休日を設定してください。</p>
+    <div class="section" id="sec-time">
+      <h2><span class="icon">🕒</span>9. 利用可能な時間帯</h2>
+      <p class="desc">曜日ごとの利用時間と定休日を設定してください。</p>
 
-    <div class="time-row"><span>平日</span><input type="text" value="09:30"><input type="text" value="16:00"></div>
-    <div class="time-row"><span>土曜</span><input type="text" value="09:30"><input type="text" value="16:00"></div>
-    <div class="time-row"><span>日曜</span><input type="text" value="休み" disabled style="background:var(--bg); color:var(--sub);"><input type="text" value="—" disabled style="background:var(--bg); color:var(--sub);"></div>
-    <div class="time-row"><span>祝日</span><input type="text" value="09:30"><input type="text" value="16:00"></div>
+      <div class="time-row"><span>平日</span><input type="text" value="09:30"><input type="text" value="16:00"></div>
+      <div class="time-row"><span>土曜</span><input type="text" value="09:30"><input type="text" value="16:00"></div>
+      <div class="time-row"><span>日曜</span><input type="text" value="休み" disabled style="background:var(--bg); color:var(--sub);"><input type="text" value="—" disabled style="background:var(--bg); color:var(--sub);"></div>
+      <div class="time-row"><span>祝日</span><input type="text" value="09:30"><input type="text" value="16:00"></div>
 
-    <div class="field full" style="margin-top:18px;">
-      <label>定休日・休業情報 <span class="optional">任意</span></label>
-      <input type="text" value="日曜日">
-  <div class="section">
-    <h2><span class="icon">📋</span>お仕事内容</h2>
-    <p class="desc">利用者様が選べる作業内容を1つずつカードで登録します。それぞれに写真を1枚添付できます。</p>
-
-    <div class="job-edit-card">
-      <div class="job-edit-head">
-        <span class="job-edit-num">1</span>
-        <input type="text" value="花の仕分け・水やり" placeholder="作業名">
-        <button class="job-remove-btn">削除</button>
-      </div>
-      <div class="job-edit-body">
-        <div class="job-edit-photo">
-          <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=200&q=80" alt="">
-          <button class="job-photo-change">写真を変更</button>
-        </div>
-        <textarea style="min-height:80px;">入荷した花の検品・仕分けを行い、状態に合わせた水やり・管理を行います。植物に触れることが好きな方に人気の作業です。</textarea>
+      <div class="field full" style="margin-top:18px;">
+        <label>定休日・休業情報 <span class="optional">任意</span></label>
+        <input type="text" value="日曜日">
       </div>
     </div>
 
-    <div class="job-edit-card">
-      <div class="job-edit-head">
-        <span class="job-edit-num">2</span>
-        <input type="text" value="ラッピング・梱包作業" placeholder="作業名">
-        <button class="job-remove-btn">削除</button>
-      </div>
-      <div class="job-edit-body">
-        <div class="job-edit-photo">
-          <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=200&q=80" alt="">
-          <button class="job-photo-change">写真を変更</button>
-        </div>
-        <textarea style="min-height:80px;">花束やアレンジメントのラッピング、配送用の梱包作業を行います。丁寧な手作業が得意な方におすすめです。</textarea>
-      </div>
-    </div>
-
-    <button class="add-job-btn">＋ 仕事内容を追加する</button>
   </div>
-
-  <div class="section">
-    <h2><span class="icon">🛟</span>サポート体制</h2>
-    <p class="desc">利用者様向けのサポート内容を箇条書きで登録できます。</p>
-
-    <div class="support-edit-row">
-      <input type="text" value="個別支援計画の作成">
-      <button class="job-remove-btn">削除</button>
-    </div>
-    <div class="support-edit-row">
-      <input type="text" value="定期的な面談・相談（月1回以上）">
-      <button class="job-remove-btn">削除</button>
-    </div>
-    <div class="support-edit-row">
-      <input type="text" value="送迎サポート（一部エリア）">
-      <button class="job-remove-btn">削除</button>
-    </div>
-    <button class="add-job-btn">＋ サポート内容を追加する</button>
-  </div>
-
-  <div class="section">
-    <h2><span class="icon">📍</span>アクセス</h2>
-    <p class="desc">最寄り駅やルートなど、来所方法に関する情報を登録してください。</p>
-
-    <div class="field full">
-      <label>アクセス情報 <span class="optional">任意</span></label>
-      <textarea style="min-height:110px;">JR大和路線「寺田町駅」より徒歩3分
-Osaka Metro谷町線「文の里駅」より徒歩8分
-近隣にコインパーキングあり（事業所専用駐車場はございません）</textarea>
-      <div class="hint">1行ごとに改行して入力してください。詳細ページでは1行ずつリスト表示されます。</div>
-    </div>
-  </div>
-
 </div>
 
 <div class="action-bar">
